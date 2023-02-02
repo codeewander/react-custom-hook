@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 export function useDebounce<T>(value: T, delay: number): T {
-  const [debounceValue, setDebounceValue] = useState(value)
+  const [debounceValue, setDebounceValue] = useState<T>(value)
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -17,7 +17,7 @@ export function useDebounce<T>(value: T, delay: number): T {
 
 // Example of how to use useDebounce()
 export function Example() {
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState<String>('')
   const debouncedValue = useDebounce(inputValue, 500)
 
   return (
@@ -25,7 +25,9 @@ export function Example() {
       <input
         type="text"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setInputValue(e.target.value)
+        }
       />
       <p>Debounced Value: {debouncedValue}</p>
     </div>

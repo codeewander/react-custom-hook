@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react'
 
+interface Result<T, E> {
+  data?: T
+  error?: E
+}
+
 export function useSWR<T = any, E = any>(
   _key: string,
   fetcher: () => T | Promise<T>,
-): {
-  data?: T
-  error?: E
-} {
+): Result<T, E> {
   const [data, setData] = useState<T | undefined>(undefined)
   const [error, setError] = useState<E | undefined>(undefined)
   const result = useMemo(fetcher, [_key])
@@ -30,7 +32,7 @@ export function useSWR<T = any, E = any>(
 // Example of how to use useSWR()
 
 export function Example() {
-  const fetcher = (url) => fetch(url).then((r) => r.json())
+  const fetcher = () => fetch('api').then((r) => r.json())
 
   const { data, error } = useSWR('/api', fetcher)
   if (error) return <div>failed</div>

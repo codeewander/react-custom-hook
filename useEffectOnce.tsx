@@ -6,7 +6,7 @@ export function useEffectOnce(effect: EffectCallback) {
 
 // Example of how to use useEffectOnce()
 export function Example() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState<number>(0)
 
   useEffectOnce(() => {
     console.log('This effect only runs once!')

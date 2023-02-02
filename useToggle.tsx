@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export function useToggle(on: boolean): [boolean, () => void] {
-  const [value, setValue] = useState(on)
+  const [value, setValue] = useState<boolean>(on)
   const toggle = () => setValue(!value)
   return [value, toggle]
 }

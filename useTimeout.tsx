@@ -12,7 +12,7 @@ const useTimeout = (callback: () => void, delay: number) => {
 
 // Example of how to use useTimeout()
 export function Example() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState<number>(0)
 
   useTimeout(() => {
     setCount(count + 1)
